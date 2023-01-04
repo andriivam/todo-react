@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 
 export default function TodoItem({todo, toggleTodo}) {
+  // console.log('todo', todo)
   const handleTodoClick = () => {
     toggleTodo(todo.id)
   }

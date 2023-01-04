@@ -1,4 +1,4 @@
-
+import React from 'react';
 import './App.css';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
@@ -35,7 +35,7 @@ const toggleTodo = (id) => {
   return (
     <div className="App">
       <h1>My Todo App</h1>
-      <TodoForm/>
+      <TodoForm  setTodos={setTodos}/>
       <TodoList todos={todos} toggleTodo={toggleTodo}/>
     </div>
   );
