@@ -1,38 +1,52 @@
+h1 {
+  text-align: left;
+}
+
 .App {
-  text-align: center;
+background-color: rgb(245,248,250);
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Style for todo form */
+.inputDiv {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.input {
+  height: 30px;
+  width: 300px;
+  border-radius: 10px;
+}
+
+.btn {
+  height: 40px;
+  width: 150px;
+  border-radius: 10px;
+  background-color: rgb(0,112,243);
   color: white;
 }
+/* Style for todo list */
+.ul {
+  background-color: #fff;
+  list-style: none;
+  padding: 0;
+  margin: 15px 60px;
+}
+ /* style for todo item */
 
-.App-link {
-  color: #61dafb;
+.list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 30px;
+  padding: 13px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.rm {
+  background: red;
+  border-radius: 50%;
+  color: #fff;
 }
