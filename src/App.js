@@ -3,7 +3,7 @@ import './App.css';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 import  { useState, useEffect} from 'react';
-// import { v4 as uuidv4 } from "uuid";
+import Context from './components/Context';
 
 const LSKEY = "MyTodoApp";
 
@@ -12,14 +12,6 @@ function App () {
   const initialTodos = [];
   
   const [todos, setTodos] = useState(initialTodos);
-
-
-const toggleTodo = (id) => {
-  const newTodos = [...todos]
-  const todo = newTodos.find(todo => todo.id === id)
-  todo.complete = !todo.complete
-  setTodos(newTodos)
-    }
 
 // Save todos to local storage
 useEffect(() => {
@@ -31,12 +23,33 @@ useEffect(() => {
   localStorage.setItem(LSKEY + '.todos', JSON.stringify(todos));
 }, [todos]);
 
+const toggleTodo = (id) => {
+  const newTodos = [...todos]
+  const todo = newTodos.find(todo => todo.id === id)
+  todo.complete = !todo.complete
+  setTodos(newTodos)
+    }
+
+
+
+const deleteTodo = (id) => {
+  setTodos(todos.filter(todo => todo.id !== id))
+  }
+
+// const deleteTodo = () => {
+// const newTodos = todos.filter(todo => todo !== todo.completed)
+// console.log('deleteTodo')
+// setTodos(newTodos)
+// }
+
   return (
+    <Context.Provider value={{deleteTodo}}>
     <div className="App">
       <h1>My Todo App</h1>
       <TodoForm setTodos={setTodos}/>
       <TodoList todos={todos} toggleTodo={toggleTodo}/>
     </div>
+    </Context.Provider>
   );
 }
 

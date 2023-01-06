@@ -13,7 +13,7 @@ setTodos(prevTodos => {
     return [...prevTodos, { id: uuidv4(), complete: false, title: inputElement.value}]
   })
 console.log(inputElement.value)
-// inputRef.current.value = null;
+//inputRef.current.value = null;
 }
 
     return (

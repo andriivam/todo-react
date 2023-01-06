@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import '../App.css';
+import Context from './Context';
 
 export default function TodoItem({todo, toggleTodo}) {
-  console.log('todo title', todo)
+  const {deleteTodo} = useContext(Context);
+  // console.log('todo title', todo)
   const handleTodoClick = () => {
     toggleTodo(todo.id)
   }
@@ -10,7 +12,7 @@ export default function TodoItem({todo, toggleTodo}) {
     <li className="list">
     <input className="inputCheck" type="checkbox" checked={todo.completed} onChange={handleTodoClick}/>
     {todo.title}
-    <button  className="rm">&times;</button>
+    <button onClick={() => deleteTodo(todo.id)} className="rm">&times;</button>
     </li>
   )
 }
