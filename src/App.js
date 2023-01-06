@@ -2,40 +2,39 @@ import React from 'react';
 import './App.css';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
-import  { useState } from 'react';
+import  { useState, useEffect} from 'react';
+// import { v4 as uuidv4 } from "uuid";
+
+const LSKEY = "MyTodoApp";
 
 function App () {
 
-  const initialTodos = [
-    {id: 1, completed: false, title: "Learn React"},
-    {id: 2, completed: false, title: "Create my List"},
-    {id: 3, completed: false, title: "Stay strong"},
-    {id: 4, completed: false, title: "Back home"},
-  ]
+  const initialTodos = [];
   
   const [todos, setTodos] = useState(initialTodos);
 
-  // const toggleTodo = (id) => {
-  //   const newTodos = [...todos]
-  //   const todo = newTodos.find(todo => todo.id === id)
-  //   todo.complete = !todo.complete
-  //   setTodos(newTodos)
-  //     }
+
 const toggleTodo = (id) => {
-  setTodos(
-    todos.map(todo => {
-      if(todo.id === id) {
-        todo.completed = !todo.completed
-      }
-      return todo;
-    })
-  )
-}
+  const newTodos = [...todos]
+  const todo = newTodos.find(todo => todo.id === id)
+  todo.complete = !todo.complete
+  setTodos(newTodos)
+    }
+
+// Save todos to local storage
+useEffect(() => {
+  const savedTodos = JSON.parse(localStorage.getItem(LSKEY + '.todos'))
+  if(savedTodos) setTodos(savedTodos)
+}, []);
+
+useEffect(() => {
+  localStorage.setItem(LSKEY + '.todos', JSON.stringify(todos));
+}, [todos]);
 
   return (
     <div className="App">
       <h1>My Todo App</h1>
-      <TodoForm  setTodos={setTodos}/>
+      <TodoForm setTodos={setTodos}/>
       <TodoList todos={todos} toggleTodo={toggleTodo}/>
     </div>
   );

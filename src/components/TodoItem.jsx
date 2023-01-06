@@ -2,7 +2,7 @@ import React from 'react';
 import '../App.css';
 
 export default function TodoItem({todo, toggleTodo}) {
-  // console.log('todo', todo)
+  console.log('todo title', todo)
   const handleTodoClick = () => {
     toggleTodo(todo.id)
   }
@@ -10,7 +10,7 @@ export default function TodoItem({todo, toggleTodo}) {
     <li className="list">
     <input className="inputCheck" type="checkbox" checked={todo.completed} onChange={handleTodoClick}/>
     {todo.title}
-    <button className="rm">&times;</button>
+    <button  className="rm">&times;</button>
     </li>
   )
 }

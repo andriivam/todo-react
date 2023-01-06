@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import '../App.css';
-
+import { v4 as uuidv4 } from "uuid";
 const TodoForm = ({setTodos}) => {
 
 const inputRef = useRef();
@@ -9,15 +9,11 @@ const clickHandler = (e) => {
     e.preventDefault();
 const inputElement = inputRef.current;
 if(inputElement === '') return
-// const newTodos = [...todos]
-// newTodos.push(inputElement)
-// setTodos(newTodos);
-
 setTodos(prevTodos => {
-    return [...prevTodos, { id: 5, title: inputElement.value, complete: false}]
+    return [...prevTodos, { id: uuidv4(), complete: false, title: inputElement.value}]
   })
 console.log(inputElement.value)
-inputRef.current.value = null;
+// inputRef.current.value = null;
 }
 
     return (
